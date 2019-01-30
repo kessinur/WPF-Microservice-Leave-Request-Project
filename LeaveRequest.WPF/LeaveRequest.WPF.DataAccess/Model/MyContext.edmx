@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LeaveProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Divisions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="Marriage" Type="nvarchar" MaxLength="1" />
+          <Property Name="Children_Total" Type="int" />
+          <Property Name="Username" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Last_Year" Type="int" />
+          <Property Name="This_Year" Type="int" />
+          <Property Name="Manager_Id" Type="int" />
+          <Property Name="Religion" Type="nvarchar" MaxLength="12" />
+          <Property Name="Division_Id" Type="int" Nullable="false" />
+          <Property Name="Position_Id" Type="int" Nullable="false" />
+          <Property Name="JoinDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Leaves">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Days" Type="int" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Log_Date" Type="datetimeoffset" Precision="7" />
+          <Property Name="Employee_Id" Type="int" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Params">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Value" Type="int" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TakeLeaves">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date_Start" Type="datetimeoffset" Precision="7" />
+          <Property Name="Date_End" Type="datetimeoffset" Precision="7" />
+          <Property Name="Approval_Status" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Difference" Type="int" />
+          <Property Name="Date_Start_Special" Type="datetimeoffset" Precision="7" />
+          <Property Name="Date_End_Special" Type="datetimeoffset" Precision="7" />
+          <Property Name="Difference_Special" Type="int" />
+          <Property Name="Employee_Id" Type="int" Nullable="false" />
+          <Property Name="Leave_Id" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Position_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TakeLeaves_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="TakeLeaves" Type="Self.TakeLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TakeLeaves">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TakeLeaves_Leaves">
+          <End Role="Leaves" Type="Self.Leaves" Multiplicity="1" />
+          <End Role="TakeLeaves" Type="Self.TakeLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaves">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TakeLeaves">
+              <PropertyRef Name="Leave_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeaveProjectDBModelStoreContainer">
+          <EntitySet Name="Divisions" EntityType="Self.Divisions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leaves" EntityType="Self.Leaves" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Params" EntityType="Self.Params" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TakeLeaves" EntityType="Self.TakeLeaves" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_Positions" Association="Self.FK_Employees_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TakeLeaves_Employees" Association="Self.FK_TakeLeaves_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="TakeLeaves" EntitySet="TakeLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TakeLeaves_Leaves" Association="Self.FK_TakeLeaves_Leaves">
+            <End Role="Leaves" EntitySet="Leaves" />
+            <End Role="TakeLeaves" EntitySet="TakeLeaves" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LeaveProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MyContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Divisions" EntityType="LeaveProjectDBModel.Division" />
+          <EntitySet Name="Employees" EntityType="LeaveProjectDBModel.Employee" />
+          <EntitySet Name="Leaves1" EntityType="LeaveProjectDBModel.Leave" />
+          <EntitySet Name="Logs" EntityType="LeaveProjectDBModel.Log" />
+          <EntitySet Name="Params" EntityType="LeaveProjectDBModel.Param" />
+          <EntitySet Name="Positions" EntityType="LeaveProjectDBModel.Position" />
+          <EntitySet Name="TakeLeaves1" EntityType="LeaveProjectDBModel.TakeLeave" />
+          <AssociationSet Name="FK_Employees_Positions" Association="LeaveProjectDBModel.FK_Employees_Positions">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TakeLeaves_Employees" Association="LeaveProjectDBModel.FK_TakeLeaves_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="TakeLeaf" EntitySet="TakeLeaves1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TakeLeaves_Leaves" Association="LeaveProjectDBModel.FK_TakeLeaves_Leaves">
+            <End Role="Leaf" EntitySet="Leaves1" />
+            <End Role="TakeLeaf" EntitySet="TakeLeaves1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Marriage" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Children_Total" Type="Int32" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Last_Year" Type="Int32" />
+          <Property Name="This_Year" Type="Int32" />
+          <Property Name="Manager_Id" Type="Int32" />
+          <Property Name="Religion" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Division_Id" Type="Int32" Nullable="false" />
+          <Property Name="Position_Id" Type="Int32" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Position" Relationship="LeaveProjectDBModel.FK_Employees_Positions" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="TakeLeaves" Relationship="LeaveProjectDBModel.FK_TakeLeaves_Employees" FromRole="Employee" ToRole="TakeLeaf" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Days" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TakeLeaves" Relationship="LeaveProjectDBModel.FK_TakeLeaves_Leaves" FromRole="Leaf" ToRole="TakeLeaf" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Log_Date" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Employee_Id" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Param">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="LeaveProjectDBModel.FK_Employees_Positions" FromRole="Position" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="TakeLeave">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Start" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Date_End" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Approval_Status" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Difference" Type="Int32" />
+          <Property Name="Date_Start_Special" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Date_End_Special" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Difference_Special" Type="Int32" />
+          <Property Name="Employee_Id" Type="Int32" Nullable="false" />
+          <Property Name="Leave_Id" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="LeaveProjectDBModel.FK_TakeLeaves_Employees" FromRole="TakeLeaf" ToRole="Employee" />
+          <NavigationProperty Name="Leaf" Relationship="LeaveProjectDBModel.FK_TakeLeaves_Leaves" FromRole="TakeLeaf" ToRole="Leaf" />
+        </EntityType>
+        <Association Name="FK_Employees_Positions">
+          <End Type="LeaveProjectDBModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="LeaveProjectDBModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Position_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TakeLeaves_Employees">
+          <End Type="LeaveProjectDBModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="LeaveProjectDBModel.TakeLeave" Role="TakeLeaf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TakeLeaf">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TakeLeaves_Leaves">
+          <End Type="LeaveProjectDBModel.Leave" Role="Leaf" Multiplicity="1" />
+          <End Type="LeaveProjectDBModel.TakeLeave" Role="TakeLeaf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaf">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TakeLeaf">
+              <PropertyRef Name="Leave_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LeaveProjectDBModelStoreContainer" CdmEntityContainer="MyContext">
+          <EntitySetMapping Name="Divisions">
+            <EntityTypeMapping TypeName="LeaveProjectDBModel.Division">
+              <MappingFragment StoreEntitySet="Divisions">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="LeaveProjectDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="Position_Id" ColumnName="Position_Id" />
+                <ScalarProperty Name="Division_Id" ColumnName="Division_Id" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Manager_Id" ColumnName="Manager_Id" />
+                <ScalarProperty Name="This_Year" ColumnName="This_Year" />
+                <ScalarProperty Name="Last_Year" ColumnName="Last_Year" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Children_Total" ColumnName="Children_Total" />
+                <ScalarProperty Name="Marriage" ColumnName="Marriage" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaves1">
+            <EntityTypeMapping TypeName="LeaveProjectDBModel.Leave">
+              <MappingFragment StoreEntitySet="Leaves">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="LeaveProjectDBModel.Log">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="Log_Date" ColumnName="Log_Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Params">
+            <EntityTypeMapping TypeName="LeaveProjectDBModel.Param">
+              <MappingFragment StoreEntitySet="Params">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="LeaveProjectDBModel.Position">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TakeLeaves1">
+            <EntityTypeMapping TypeName="LeaveProjectDBModel.TakeLeave">
+              <MappingFragment StoreEntitySet="TakeLeaves">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Leave_Id" ColumnName="Leave_Id" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="Difference_Special" ColumnName="Difference_Special" />
+                <ScalarProperty Name="Date_End_Special" ColumnName="Date_End_Special" />
+                <ScalarProperty Name="Date_Start_Special" ColumnName="Date_Start_Special" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="Approval_Status" ColumnName="Approval_Status" />
+                <ScalarProperty Name="Date_End" ColumnName="Date_End" />
+                <ScalarProperty Name="Date_Start" ColumnName="Date_Start" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
