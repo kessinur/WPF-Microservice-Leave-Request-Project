@@ -54,10 +54,24 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ILeaveService.cs" />
+    <Compile Include="Services\IPositionService.cs" />
+    <Compile Include="Services\Master\LeaveService.cs" />
+    <Compile Include="Services\Master\PositionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeaveRequest.WPF.Common\LeaveRequest.WPF.Common.csproj">
+      <Project>{bd32a4d3-1406-4525-bd53-6644521cb6c0}</Project>
+      <Name>LeaveRequest.WPF.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LeaveRequest.WPF.DataAccess\LeaveRequest.WPF.DataAccess.csproj">
+      <Project>{cfaa4329-0c9d-428c-a1f3-d1822b257b2f}</Project>
+      <Name>LeaveRequest.WPF.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

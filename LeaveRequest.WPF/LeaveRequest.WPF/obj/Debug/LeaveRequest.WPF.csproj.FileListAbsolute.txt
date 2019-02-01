@@ -16,6 +16,9 @@ E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Pro
 E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\obj\Debug\LeaveRequest.WPF.csproj.GenerateResource.Cache
 E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\obj\Debug\LeaveRequest.WPF.exe
 E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\obj\Debug\LeaveRequest.WPF.pdb
-E:\Metrodata\File MII\GITHUB\Take Leave\WPF-Microservice-Leave-Request-Project\LeaveRequest.WPF\LeaveRequest.WPF\bin\Debug\LeaveRequest.WPF.exe.config
-E:\Metrodata\File MII\GITHUB\Take Leave\WPF-Microservice-Leave-Request-Project\LeaveRequest.WPF\LeaveRequest.WPF\obj\Debug\LeaveRequest.WPF.exe
-E:\Metrodata\File MII\GITHUB\Take Leave\WPF-Microservice-Leave-Request-Project\LeaveRequest.WPF\LeaveRequest.WPF\obj\Debug\LeaveRequest.WPF.pdb
+E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\bin\Debug\LeaveRequest.WPF.BusinessLogic.exe
+E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\bin\Debug\LeaveRequest.WPF.Common.exe
+E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\bin\Debug\LeaveRequest.WPF.DataAccess.exe
+E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\bin\Debug\LeaveRequest.WPF.BusinessLogic.pdb
+E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\bin\Debug\LeaveRequest.WPF.Common.pdb
+E:\Metrodata\File MII\Cloningan Leave Request\WPF-Microservice-Leave-Request-Project\Project\LeaveRequest.WPF\LeaveRequest.WPF\bin\Debug\LeaveRequest.WPF.DataAccess.pdb

@@ -81,5 +81,24 @@ namespace LeaveRequest.WPF.Common.Interfaces.Master
                 return false;
             }
         }
+        public List<Position> Search(string keyword, string category)
+        {
+            if (category == "Id")
+            {
+                var get = _context.Positions.Where(x => (x.IsDelete == false) && (x.Id.ToString().Contains(keyword))).ToList();
+                return get;
+            }
+            else if (category == "Name")
+            {
+                var get = _context.Positions.Where(x => (x.IsDelete == false) && (x.Name.Contains(keyword))).ToList();
+                return get;
+            }
+            else
+            {
+                var get = _context.Positions.Where(x => (x.IsDelete == false)).ToList();
+                return get;
+            }
+        }
+
     }
 }

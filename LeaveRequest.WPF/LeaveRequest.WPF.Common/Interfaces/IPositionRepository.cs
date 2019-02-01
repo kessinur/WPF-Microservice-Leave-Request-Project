@@ -15,5 +15,6 @@ namespace LeaveRequest.WPF.Common.Interfaces
         bool Delete(int? id);
         List<Position> Get();
         Position Get(int? id);
+        List<Position> Search(string keyword, string category);
     }
 }
